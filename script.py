@@ -1,5 +1,5 @@
-from math import prod
+from functools import reduce
 
 
 def count_multipliers(*args) -> int:
-    return prod(args)
+    return reduce((lambda x, y: x * y), args)
