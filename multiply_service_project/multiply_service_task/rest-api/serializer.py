@@ -2,4 +2,5 @@ from rest_framework import serializers
 
 
 class ScoreSerializer(serializers.Serializer):
-    multipliers = serializers.ListField(child=serializers.IntegerField())
+    first_json = serializers.JSONField()
+    second_json = serializers.JSONField()

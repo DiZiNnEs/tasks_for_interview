@@ -4,18 +4,19 @@ from rest_framework.response import Response
 
 from .serializer import ScoreSerializer
 
-from .multiply import get_multiply
+from .json import get_json_human_readable
 
 
 class TApiView(APIView):
     def post(self, request: Request, *args, **kwargs) -> Response:
         serializer = ScoreSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        multipliers = serializer.validated_data['multipliers']
-        result = get_multiply(multipliers)
+        first_json = serializer.validated_data['first_json']
+        second_json = serializer.validated_data['second_json']
         return Response(
             {
-                'Введенные данные': multipliers,
-                'Результат': result,
+                'Первый JSON': first_json,
+                'Второй JSON': second_json,
+                'Результат': get_json_human_readable(first_json, second_json)
             }
         )
