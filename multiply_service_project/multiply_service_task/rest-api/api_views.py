@@ -1,12 +1,21 @@
+from rest_framework.request import Request
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
+from .serializer import ScoreSerializer
 
 from .multiply import get_multiply
 
 
 class TApiView(APIView):
-    def post(self, request, pk, *args, **kwargs) -> Response:
-        post_data = [int(x) for x in str(pk)]
-        multiply = {"Вы ввели следующие значения": post_data,
-                    "Результат": get_multiply(post_data)}
-        return Response(multiply)
+    def post(self, request: Request, *args, **kwargs) -> Response:
+        serializer = ScoreSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        multipliers = serializer.validated_data['multipliers']
+        result = get_multiply(multipliers)
+        return Response(
+            {
+                'Введенные данные': multipliers,
+                'Результат': result,
+            }
+        )
