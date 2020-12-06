@@ -1,14 +1,14 @@
 from rest_framework.request import Request
+from rest_framework.utils import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .serializer import ScoreSerializer
-
-from .json import get_json_human_readable
+from .json_handle import get_json_human_readable
 
 
 class TApiView(APIView):
-    def post(self, request: Request, *args, **kwargs) -> Response:
+    def post(self, request: Request, *args, **kwargs) -> json:
         serializer = ScoreSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         first_json = serializer.validated_data['first_json']
