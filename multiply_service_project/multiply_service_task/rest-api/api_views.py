@@ -15,7 +15,7 @@ class TApiView(APIView):
         result = get_multiply(multipliers)
         return Response(
             {
-                'Введенные данные': multipliers,
-                'Результат': result,
+                'input_data': multipliers,
+                'result': result,
             }
         )
