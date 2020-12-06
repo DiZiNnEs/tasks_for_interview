@@ -1,33 +1,74 @@
-# Задача №3
+# Задача №4
 
 ## Принцип работы
 
 Пишем в `Headers` следующие Key: Value
+
 ###
+
 **Content-Type : application/json**
+
 ###
-И передаем POST запрос с JSON данными на данный адресс `127.0.0.1:8000/api/multiply/`
+
+И передаем POST запрос с JSON данными на данный адресс `127.0.0.1:8000/api/json/`
+
 ###
+
 Следующие данные:
+
 ```json
 {
-    "multipliers": [1, 2, 3, 4]
-}Л
+  "first_json": {
+    "address": "2gis.url.com",
+    "timeout": 50,
+    "proxy-server": "3.102.198.51",
+    "deny": true
+  },
+  "second_json": {
+    "timeout": 1050,
+    "proxy-server": "3.102.198.51",
+    "verbose": true
+  }
+}
+
 ```
-_~~Будет происходить~~ `1 * 2 * 3 * 4 = 24`_
-###
+
 Ответ будет слудеющим
+
 ```json
 {
-    "Введенные данные": [
-        1,
-        2,
-        3,
-        4
-    ],
-    "Результат": 24
+  "first_json": {
+    "address": "2gis.url.com",
+    "timeout": 50,
+    "proxy-server": "3.102.198.51",
+    "deny": true
+  },
+  "second_json": {
+    "timeout": 1050,
+    "proxy-server": "3.102.198.51",
+    "verbose": true
+  },
+  "result": {
+    "D": {
+      "timeout": {
+        "N": 1050,
+        "O": 50
+      },
+      "deny": {
+        "R": true
+      },
+      "address": {
+        "R": "2gis.url.com"
+      },
+      "proxy-server": {
+        "U": "3.102.198.51"
+      },
+      "verbose": {
+        "A": true
+      }
+    }
+  }
 }
 ```
 
-## Тесты
-Тесты прописаны в файле `tests.py`
+Сервер принимает два JSON файла и дальше идёт обработка этих JSON и после чего происходит ответ с сервера 
