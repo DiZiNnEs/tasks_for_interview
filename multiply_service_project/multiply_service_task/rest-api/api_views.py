@@ -15,8 +15,8 @@ class TApiView(APIView):
         second_json = serializer.validated_data['second_json']
         return Response(
             {
-                'Первый JSON': first_json,
-                'Второй JSON': second_json,
-                'Результат': get_json_human_readable(first_json, second_json)
+                'first_json': first_json,
+                'second_json': second_json,
+                'result': get_json_human_readable(first_json, second_json)
             }
         )
